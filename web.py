@@ -1,18 +1,10 @@
-import http.server
-import socketserver
-import socket
+from flask import Flask, redirect, url_for, render_template
 
-PORT = 8000
-DIRECTORY = "public_html"
+app = Flask(__name__)
 
-# Get the local IP address
-hostname = socket.gethostname()
-local_ip = socket.gethostbyname(hostname)
+@app.route("/")
+def home():
+    return render_template("index.html")
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=DIRECTORY, **kwargs)
-
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print(f"Serving at http://{local_ip}:{PORT}")
-    httpd.serve_forever()
+if __name__ == "__main__":
+    app.run(debug=False)
