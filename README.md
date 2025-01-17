@@ -1,4 +1,3 @@
-Sure! Here's the filled-in README file for your Flask project:
 
 ### README.md
 
